@@ -58,3 +58,29 @@ INSERT INTO products (id,NAME,count,price) VALUES (7,'VR-очки',2,70000)
 
 UPDATE products SET NAME='PS5' WHERE NAME='IMAC'
 
+                                    ЛАБА №3
+                                    
+ Создайте таблицу users с полем id типа INT и двумя текстовыми полями, которые будут хранить имя (first_name) и фамилию (last_name). Длина имени и фамилии не превышает 50 символов.
+
+Добавьте в таблицу трех пользователей: Дмитрия Иванова, Анатолия Белого и Дениса Давыдова.
+
+![image](https://github.com/user-attachments/assets/8c40f261-e61a-438a-a779-ad3c5e21e3ea)
+
+CREATE TABLE USERS (
+    id INT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50)
+);
+INSERT INTO USERS (id,first_name,last_name) VALUES
+(1, 'Дмитрий', 'Иванов'),
+(2, 'Анатолий', 'Белый'),
+(3, 'Денис','Давыдов');
+
+
+
+
+
+
+
+
+
