@@ -20,3 +20,14 @@ select * from orders where status in('cancelled', 'new')
 select id,sum from orders where products_count > 3
 
 ![image](https://github.com/user-attachments/assets/5c21e159-ca1d-4626-8593-f041aca3ab8b)
+
+5) Выберите из таблицы orders 3 самых дешевых заказа за всё время.
+Данные нужно отсортировать в порядке убывания цены.
+Отмененные заказы не учитывайте.
+
+
+
+2) Выберите из таблицы orders 2 самых дорогих заказов за всё время.
+Данные нужно отсортировать в порядке убывания цены.
+Отмененные заказы не учитывайте.
+
