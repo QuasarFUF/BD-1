@@ -76,6 +76,132 @@ INSERT INTO USERS (id,first_name,last_name) VALUES
 (2, 'Анатолий', 'Белый'),
 (3, 'Денис','Давыдов');
 
+                                    ЛАБА №4
+                                    
+1.Создайте таблицу users для хранения информации о пользователях сайта. В таблице должны быть следующие поля: id – идентификатор, целое положительное; email – адрес электронной почты, строка не более 100 символов; date_joined – дата регистрации (достаточно хранить дату, без времени) last_activity – дата и время последней активности (с точностью до секунд).
+
+![image](https://github.com/user-attachments/assets/b53b39ec-6dfe-4c74-a196-6f27473d9213)
+
+
+Неверное решение:
+
+CREATE TABLE users(id INT UNSIGNED, email VARCHAR(100), date_joined DATE, last_activity DATETIME); INSERT INTO users (id, email, date_joined, last_activity) VALUES (1, "user1@domain.com", "2014-12-12", "2016-04-08 12:34:54") INSERT INTO users (id, email, date_joined, last_activity) VALUES (2, "user2@domain.com", "2014-12-12", "2017-02-13 11:46:53") INSERT INTO users (id, email, date_joined, last_activity) VALUES (3, "user3@domain.com", "2014-12-13", "2017-04-04 05:12:07")
+
+Верное решение:
+
+create table users ( id int(10) unsigned, email varchar (100), date_joined date, last_activity datetime );
+insert into users (id, email, date_joined,last_activity) values (1,'user1@domain.com', '2014-12-12','2016-04-08 12:34:54'),
+(2,'user2@domain.com', '2014-12-12','2017-02-13 11:46:53'), (3,'user3@domain.com', '2014-12-13','2017-04-04 05:12:07');
+
+![image](https://github.com/user-attachments/assets/02a3bbd8-d8c0-4ab0-a7b3-799eb965f876)
+
+2.Создайте таблицу calendar для хранения календаря посетителей. В таблице должны быть следующие поля: id – идентификатор записи в календаре, целое положительное; user_id – идентификатор пользователя, целое положительное; doctor_id – идентификатор доктора, целое положительное; visit_date – дата и время визита (точность до секунд).
+
+![image](https://github.com/user-attachments/assets/3fb2e305-bcf6-4f4b-b078-845131f06097)
+
+Неверное решение:
+
+Create table calendar ( id int unsigned, user_id int unsigned, doctor_id int unsigned, visit_date datetime); Insert into calendar (id, user_id, doctor_id, visit_date) Values (1, 1914 , 1, '2017-04-08 12:00:00'), (2, 12, 1, '2017-04-08 12:30:00'), (3, 4641, 2, '2017-04-09 09:00:00'), (4, 4641, 2,'2017-04-09 09:00:00'), (5, 15, 2,'2017-04-09 10:00:00')
+
+Верное решение:
+
+Create table calendar ( id int unsigned, user_id int unsigned, doctor_id int unsigned, visit_date datetime);
+Insert into calendar (id, user_id, doctor_id, visit_date) Values (1, 1914 , 1, '2017-04-08 12:00:00'),
+(2, 12, 1, '2017-04-08 12:30:00'),(3, 4641, 2, '2017-04-09 09:00:00'),
+(4, 784, 1,'2017-04-08 13:00:00'), (5, 15, 2,'2017-04-09 10:00:00') 
+
+![image](https://github.com/user-attachments/assets/45590bce-27be-41b2-b90c-31d45f85f257)
+
+3.Создайте таблицу users , в которой будут следующие поля: id — идентификатор, целые положительные числа. first_name— имя, строки до 50 символов. last_name — фамилия, строки до 60 символов. bio — биография, текст до 65000 символов.
+
+![image](https://github.com/user-attachments/assets/3f71835a-f4f9-432e-8dbd-d475e964be8f)
+
+Неверное решение:
+
+create table users ( id int (10) unsigned, first_name varchar (50) unsigned, last_name varchar (60) unsigned, bio text ); INSERT INTO users (id, first_name, last_name, bio) VALUES (1,'Антон','Кулик','С отличием окончил 39 лицей.'), (2,'Сергей','Давыдов',''), (3,'Дмитрий','Соколов','Профессиональный программист.')
+
+Верное решение:
+
+create table users ( id int (10) unsigned, first_name varchar (50), last_name varchar (60), bio text );
+INSERT INTO users (id, first_name, last_name, bio) VALUES (1,'Антон','Кулик','С отличием окончил 39 лицей.'),
+(2,'Сергей','Давыдов',''), (3,'Дмитрий','Соколов','Профессиональный программист.')
+
+![image](https://github.com/user-attachments/assets/7c95946a-9c5b-4389-90f1-6aeab751a99b)
+
+                                    ЛАБА №5
+
+1.Выберите из таблицы orders 4 самых дорогих заказов за всё время.Данные нужно отсортировать в порядке убывания цены.Отмененные заказы не учитывайте.
+
+![image](https://github.com/user-attachments/assets/a457909f-6a32-4d28-9e9d-c8c87ecd4258)
+
+SELECT * FROM orders WHERE status != 'cancelled' ORDER BY sum DESC LIMIT 4;
+
+![image](https://github.com/user-attachments/assets/7aeae81c-fc48-40ae-98bb-28e3ad7d15ba)
+
+2.Выберите из таблицы products название и цены четырех самых дешевых товаров, которые есть на складе.
+
+![image](https://github.com/user-attachments/assets/48dedbf1-6c22-4cf8-985d-ba411e5921fd)
+
+SELECT name, price FROM products WHERE count > 0 ORDER BY price ASC LIMIT 4;
+
+![image](https://github.com/user-attachments/assets/cc99aec8-4d68-41e2-b473-a598c2e63a87)
+
+3.Выберите из таблицы orders три последних заказа (по дате date) стоимостью от 3200 рублей и выше. Данные отсортируйте по дате в обратном порядке.
+
+![image](https://github.com/user-attachments/assets/0393afc9-2b01-4c05-980e-b24f84fc02b3)
+
+SELECT * FROM orders WHERE sum >= 3200 ORDER BY date DESC LIMIT 3;
+
+![image](https://github.com/user-attachments/assets/c07833fa-5cec-43af-a02c-f66b1e068d6e)
+
+4.Создайте данную таблицу:
+
+![image](https://github.com/user-attachments/assets/bc32d10f-e836-417e-907b-5795b2bd0189)
+
+CREATE TABLE products (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    count INT,
+    price DECIMAL(10, 2)
+);
+
+INSERT INTO products (id, name, count, price) VALUES
+(1, 'Стиральная машина', 5, 10000),
+(2, 'Холодильник', 0, 10000),
+(3, 'Микроволновка', 3, 4000),
+(4, 'Пылесос', 2, 4500),
+(5, 'Вентилятор', 0, 700),
+(6, 'Телевизор', 7, 31740),
+(7, 'Тостер', 2, 2500),
+(8, 'Принтер', 4, 3000),
+(9, 'Активные колонки', 1, 2900),
+(10, 'Ноутбук', 4, 36990),
+(11, 'Посудомоечная машина', 0, 17800),
+(12, 'Видеорегистратор', 23, 4000),
+(13, 'Смартфон', 8, 12300.),
+(14, 'Флешка', 4, 1400),
+(15, 'Блендер', 0, 5500),
+(16, 'Газовая плита', 5, 11900),
+(17, 'Клавиатура', 3, 1800);
+
+![image](https://github.com/user-attachments/assets/abe397a7-a836-4b1a-9f8b-ea5bb45780c3)
+
+5.Из таблицы ниже сделать выборку на основе задания: Сайт выводит товары по 5 штук. Выберите из таблицы products товары, которые пользователи увидят на 3 странице каталога при сортировке в порядке возрастания цены (price).
+
+![image](https://github.com/user-attachments/assets/6f4ff6e1-7581-4428-ae94-5dfb904b1895)
+
+SELECT name, price FROM products ORDER BY price ASC LIMIT 5 OFFSET 10;
+
+![image](https://github.com/user-attachments/assets/4088185e-b7af-4c53-bc12-23216534da92)
+
+                                    ЛАБА №6
+
+1.Создайте таблицу orders для хранения списка заказов: id — идентификатор, целое положительное. user_id — идентификатор пользователя, который оформил заказ. Целое положительное, NULL запрещен. amount — стоимость заказа. Целое положительное число не более 1 млн. NULL запрещен, по умолчанию 0. created — дата и время создания заказа. NULL запрещен. state — статус заказа. Выбор из new, cancelled, in_progress, delivered, completed. Можно выбрать только один вариант. NULL запрещен. По умолчанию должен стоять new. Добавьте 3 записи так, чтобы получалась таблица ниже:
+
+![image](https://github.com/user-attachments/assets/9f278151-3dfa-4bff-98c5-45785eb3cf32)
+
+
+
 
 
 
