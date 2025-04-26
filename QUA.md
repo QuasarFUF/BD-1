@@ -274,8 +274,32 @@ SELECT * FROM products;
 ![image](https://github.com/user-attachments/assets/cdb7cacc-b54f-4161-a5d7-cf17046f4300)
 
 
+Напишите тренировочный код для задания: Выберите из таблицы users всех пользователей с зарплатой от 40 000 рублей и выше. Данные нужно сначала отсортировать по убыванию зарплаты (salary), а затем в алфавитном порядке по имени (first_name). Не забудьте про удаление таблицы, если она существует (именно удаление). Код (ВЕСЬ) в одном файле.
+
+DROP table if exists users;
+
+CREATE TABLE users(
+id INT UNSIGNED NOT null PRIMARY KEY AUTO_INCREMENT,
+first_name VARCHAR(20),
+birthday DATE,
+last_name VARCHAR(20),
+salary INTEGER,
+job VARCHAR(20)
+);
+INSERT INTO users (first_name, last_name, birthday, salary, job)
+VALUES ('Дмитрий', 'Петров', '2000-03-14', 25000, 'офис-менеджер'),
+('Ольга', 'Антонова', '1999-12-01', 41000, 'дизайнер'),
+('Сергей', 'Васильев', '2002-02-20', 40000, 'младший программист'),   
+('Константин', 'Степаниденко', '2004-03-07', 30000, 'водитель'),
+('Алена', 'Шикова', '1999-08-17', 53000, 'фотограф'),
+('Василина', 'Парамонова', '2000-10-10', 28000, 'секретарь'),
+('Александр', 'Пузаков', '2002-02-20', 120000, 'ведущий программист'),
+('Алина', 'Антонова', '2002-01-01', 40000, 'верстальщик');
+
+SELECT * FROM users WHERE salary >= 40000 order BY salary DESC, first_name asc
 
 
+![image](https://github.com/user-attachments/assets/157e7414-995f-4cc3-a3b2-92d7132b6f95)
 
 
 
